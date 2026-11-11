@@ -177,6 +177,7 @@ body.light{background-image:radial-gradient(900px 500px at 78% -8%,rgba(154,111,
 .cert .ct{padding:12px 14px;border-top:1px solid var(--line)}
 .cert .ctt{font-family:var(--f-disp);font-size:14px;font-weight:500;color:var(--txt)}
 .cert .ctb{font-size:11.5px;color:var(--txt2);margin-top:2px}
+.cert-preview{display:block}.cert-links{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px}.cert-links a{color:var(--teal);font-size:12px;min-height:32px;display:inline-flex;align-items:center;text-underline-offset:4px}
 .gh-graph{overflow-x:auto;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--card);scrollbar-width:none;margin-bottom:4px}
 .eyebrow{font-family:var(--f-mono);font-size:12px;color:var(--teal);letter-spacing:.02em;margin:0 0 6px}
 .p-h2{font-family:var(--f-disp);font-size:20px;font-weight:600;margin-bottom:16px;letter-spacing:-.01em}
@@ -738,12 +739,15 @@ const PORTFOLIO = {
       {k:'Duration', v:'2025 – 2029'},
       {k:'CGPA', v:'8.28 / 10'}
     ],
-    certs:['Python Programming','Android App Development','AI Tools & ChatGPT','Google Analytics','Digital Marketing','Project Management']
+    certs:["Getting Started with Docker", "Introduction to Artificial Intelligence", "Business Analytics with Excel", "Claude 101", "Claude Code in Action", "Claude on Google Cloud", "AWS Foundations: Getting Started with the AWS Cloud Essentials", "AWS IoT Learning Plan: Foundations", "Getting Started with AWS IoT", "Handling AWS IoT Device Data and States", "Managing AWS IoT Devices at Scale", "Analyzing, Visualizing, and Gaining Insights from IoT Devices", "Python Programming", "Android App Development", "AI Tools & ChatGPT", "Google Analytics", "Digital Marketing", "Project Management"]
   },
   achievements:[
     {t:'Internal Smart India Hackathon 2026 — Top 50 Teams · Team Leader', d:'Led The Solvers, selected among the Top 50 Teams at Sharda University’s internal SIH, organised by the Sharda School of Computing Science & Engineering on 10–11 September 2026.', certificate:'assets/cert-sih-team-solvers.pdf'},
+{"t": "Build with Bharat 4.0 — Participation & PPT Round", "d": "Participated with Team THE SOLVERSE in Build with Bharat 4.0 organised by CodeVerse, including the PPT round organised by CodeVerse × KCC.", "certificate": "assets/cert-build-with-bharat.pdf", "extraCertificate": "assets/cert-build-with-bharat-ppt.pdf"},
+{"t": "FOUNDER CODE: 24 Hour Hackathon — Participation", "d": "Participated with Team THE SOLVERSE, representing Sharda University, in the hackathon organised by Sri Muthukumaran Institute of Technology.", "certificate": "assets/cert-founder-code.pdf"},
+{"t": "Genie X Hub: Project Eclipse Hackathon — Participation", "d": "Participated with Team THE SOLVERSE, representing Sharda University, in the hackathon organised by Genie Hive Private Limited.", "certificate": "assets/cert-project-eclipse.pdf"},
     {t:'ChatGPT Codex Hackathon 2026 — Participation', d:'Participated in the ChatGPT Codex Hackathon 2026 organised by BlockseBlock. Certificate ID: BSB-OKA174-MSDKEZZ1.', certificate:'assets/cert-chatgpt-codex-2026.png'},
-    {t:'OpenAI Codex Hackathon — Top 30%', d:'Finished in the top 30% of 2,989 participants (NamasteDev).'},
+    {t:'OpenAI Codex Hackathon — Top 30%', d:'Finished in the top 30% of 2,989 participants (NamasteDev). Certificate ID: 96300DB5193A331E0C5E1E4E.', certificate:'assets/cert-codex.jpg'},
     {t:'ISRO BAH 2026 — Team Lead, SOHelioraX', d:'Led a 3-person team on SOHelioraX. Received a certificate for participation and successful idea submission in Bharatiya Antariksh Hackathon 2026, presented by ISRO and powered by Hack2skill.', certificate:'assets/cert-isro-bah-2026.pdf'},
     {t:'Smart India Hackathon 2025 — Kolam Studio', d:'Kolam identify / recreate / generate tool (SIH12507, AICTE Heritage & Culture).'},
     {t:'AthletixAI — Live in production', d:'AI sports-biomechanics platform, deployed and running for real users.'}
@@ -895,7 +899,7 @@ function buildAcademics(){
   return '<div class="info reveal">'+rows+'</div>'+certs;
 }
 function buildAchievements(){
-  const cards=PORTFOLIO.achievements.map(function(x){return '<div class="ach reveal"><div class="ach-ic">'+ICM.achievements+'</div><div><div class="ach-t">'+x.t+'</div><div class="ach-d">'+x.d+'</div>'+(x.certificate?'<a class="achievement-proof" href="'+x.certificate+'" target="_blank" rel="noopener">View certificate &#8599;</a>':'')+'</div></div>';}).join('');
+  const cards=PORTFOLIO.achievements.map(function(x){return '<div class="ach reveal"><div class="ach-ic">'+ICM.achievements+'</div><div><div class="ach-t">'+x.t+'</div><div class="ach-d">'+x.d+'</div>'+(x.certificate?'<a class="achievement-proof" href="'+x.certificate+'" target="_blank" rel="noopener">View certificate &#8599;</a>':'')+(x.extraCertificate?'<a class="achievement-proof" style="margin-left:16px" href="'+x.extraCertificate+'" target="_blank" rel="noopener">View PPT-round certificate &#8599;</a>':'')+'</div></div>';}).join('');
   return cards;
 }
 const SECTITLE={profile:'My Profile',academics:'My Academics',achievements:'My Achievements'};
@@ -921,9 +925,24 @@ const SLIDE_ORDER=['profile','academics','projects','achievements','certificates
 const SLIDE_LABEL={profile:'My Profile',academics:'My Academics',projects:'My Projects',achievements:'My Achievements',certificates:'My Certificates',github:'My GitHub Repos'};
 var CERTS=[
  {img:'assets/cert-sih-team-solvers.png', url:'assets/cert-sih-team-solvers.pdf', t:'Internal Smart India Hackathon 2026 — Top 50 Teams', by:'Sharda University · The Solvers · Team Leader · 10–11 September 2026'},
+{"img": "assets/cert-docker.png", "url": "assets/cert-docker.pdf", "t": "Getting Started with Docker", "by": "Simplilearn SkillUp · 10 November 2026 · Code: 11015909"},
+{"img": "assets/cert-intro-ai.png", "url": "assets/cert-intro-ai.pdf", "t": "Introduction to Artificial Intelligence", "by": "Simplilearn SkillUp · 10 November 2026 · Code: 11014104"},
+{"img": "assets/cert-business-analytics-excel.png", "url": "assets/cert-business-analytics-excel.pdf", "t": "Business Analytics with Excel", "by": "Simplilearn SkillUp · Microsoft · 9 November 2026 · Code: 11011817"},
+{"img": "assets/cert-claude-101.png", "url": "assets/cert-claude-101.pdf", "t": "Claude 101", "by": "Claude Academy · 7 November 2026", "verify": "https://academy.claude.com/verify/43ed25b44cabc0b79df76b8782af7979"},
+{"img": "assets/cert-claude-code.png", "url": "assets/cert-claude-code.pdf", "t": "Claude Code in Action", "by": "Claude Academy · 7 November 2026", "verify": "https://academy.claude.com/verify/8720b470fbbd1645f5f75035c0bfddcc"},
+{"img": "assets/cert-claude-vertex-ai.png", "url": "assets/cert-claude-vertex-ai.pdf", "t": "Claude on Google Cloud", "by": "Claude Academy · 7 November 2026", "verify": "https://academy.claude.com/verify/1ada11bbb47299fe9828f63b5c9fd1cd"},
+{"img": "assets/cert-aws-cloud-essentials.png", "url": "assets/cert-aws-cloud-essentials.pdf", "t": "AWS Foundations: Getting Started with the AWS Cloud Essentials", "by": "AWS Training & Certification · Course completion · 7 November 2026"},
+{"img": "assets/cert-aws-iot-foundations.png", "url": "assets/cert-aws-iot-foundations.pdf", "t": "AWS IoT Learning Plan: Foundations", "by": "AWS Training & Certification · Course completion · 7 November 2026"},
+{"img": "assets/cert-aws-iot-start.png", "url": "assets/cert-aws-iot-start.pdf", "t": "Getting Started with AWS IoT", "by": "AWS Training & Certification · Course completion · 7 November 2026"},
+{"img": "assets/cert-aws-iot-data.png", "url": "assets/cert-aws-iot-data.pdf", "t": "Handling AWS IoT Device Data and States", "by": "AWS Training & Certification · Course completion · 7 November 2026"},
+{"img": "assets/cert-aws-iot-scale.png", "url": "assets/cert-aws-iot-scale.pdf", "t": "Managing AWS IoT Devices at Scale", "by": "AWS Training & Certification · Course completion · 7 November 2026"},
+{"img": "assets/cert-aws-iot-insights.png", "url": "assets/cert-aws-iot-insights.pdf", "t": "Analyzing, Visualizing, and Gaining Insights from IoT Devices", "by": "AWS Training & Certification · Course completion · 7 November 2026"},
+{"img": "assets/cert-build-with-bharat.png", "url": "assets/cert-build-with-bharat.pdf", "t": "Build with Bharat 4.0 — Participation & PPT Round", "by": "CodeVerse × KCC · Team THE SOLVERSE", "extraUrl": "assets/cert-build-with-bharat-ppt.pdf", "extraLabel": "View PPT-round certificate"},
+{"img": "assets/cert-founder-code.png", "url": "assets/cert-founder-code.pdf", "t": "FOUNDER CODE: 24 Hour Hackathon — Participation", "by": "Sri Muthukumaran Institute of Technology · Team THE SOLVERSE"},
+{"img": "assets/cert-project-eclipse.png", "url": "assets/cert-project-eclipse.pdf", "t": "Genie X Hub: Project Eclipse Hackathon — Participation", "by": "Genie Hive Private Limited · Team THE SOLVERSE"},
  {img:'assets/cert-isro-bah-2026.png', url:'assets/cert-isro-bah-2026.pdf', t:'Bharatiya Antariksh Hackathon 2026 — Participation', by:'ISRO · Powered by Hack2skill · Participation and successful idea submission · ID: 2026H2S06BAH-P27393'},
  {img:'assets/cert-chatgpt-codex-2026.png', t:'ChatGPT Codex Hackathon 2026 — Participation', by:'BlockseBlock · ID: BSB-OKA174-MSDKEZZ1'},
- {img:'assets/cert-codex.jpg', t:'OpenAI Codex Hackathon \u2014 Top 30%', by:'NamasteDev \u00b7 2,989 participants'},
+ {img:'assets/cert-codex.jpg', t:'OpenAI Codex Hackathon \u2014 Top 30%', by:'NamasteDev · 2,989 participants · ID: 96300DB5193A331E0C5E1E4E'},
  {img:'assets/cert-aitools.jpg', t:'AI Tools & ChatGPT Workshop', by:'be10x'},
  {img:'assets/cert-python.jpg', t:'Python Advanced', by:'LearnTube.ai'},
  {img:'assets/cert-android.jpg', t:'Android App Development', by:'LearnTube.ai'},
@@ -933,7 +952,13 @@ var CERTS=[
  {img:'assets/cert-project-mgmt.jpg', t:'Project Management', by:'LearnTube.ai'}
 ];
 function buildCertificates(){
-  return '<div class="certs">'+CERTS.map(function(c){ return '<a class="cert reveal" href="'+(c.url||c.img)+'" target="_blank" rel="noopener"><img src="'+c.img+'" alt="'+c.t+'" loading="lazy"><div class="ct"><div class="ctt">'+c.t+'</div><div class="ctb">'+c.by+'</div><div class="ctb">View certificate &#8599;</div></div></a>'; }).join('')+'</div>';
+  return '<div class="certs">'+CERTS.map(function(c){
+    var url=c.url||c.img;
+    var links='<a href="'+url+'" target="_blank" rel="noopener">View certificate &#8599;</a>';
+    if(c.extraUrl)links+='<a href="'+c.extraUrl+'" target="_blank" rel="noopener">'+escapeHtml(c.extraLabel) +' &#8599;</a>';
+    if(c.verify)links+='<a href="'+c.verify+'" target="_blank" rel="noopener">Verify badge &#8599;</a>';
+    return '<article class="cert reveal"><a class="cert-preview" href="'+url+'" target="_blank" rel="noopener"><img src="'+c.img+'" alt="'+escapeHtml(c.t)+'" loading="lazy"></a><div class="ct"><div class="ctt">'+escapeHtml(c.t)+'</div><div class="ctb">'+escapeHtml(c.by)+'</div><div class="cert-links">'+links+'</div></div></article>';
+  }).join('')+'</div>';
 }
 function projectTags(){
   var set={}; DATA.projects.forEach(function(p){ if(p.owner==='manthan'||p.owner==='both'){ (p.tags||[]).forEach(function(t){ set[t]=1; }); } });
@@ -1112,6 +1137,8 @@ function renderStats(){
 }
 
 var KB=[
+ {kw:['aws','iot','cloud','docker','claude','training','course','badge','certificates'], a:"Manthan has course-completion certificates in AWS Cloud Essentials and five AWS IoT courses, plus Claude 101, Claude Code in Action, Claude on Google Cloud, Introduction to Artificial Intelligence, Getting Started with Docker, and Business Analytics with Excel. Open My Certificates for the original PDFs and Claude badge verification links."},
+ {kw:['bharat','founder','eclipse','solverse'], a:"Manthan participated with Team THE SOLVERSE in Build with Bharat 4.0 (including the PPT round), FOUNDER CODE: 24 Hour Hackathon, and Genie X Hub: Project Eclipse Hackathon. See My Achievements for certificate links. The Solvers is his separate SIH team, which he led to an Internal SIH 2026 Top 50 Teams selection at Sharda University."},
  {kw:['hi','hello','hey','namaste'], a:"Hey! I'm Manthan's portfolio assistant \u2014 ask me about his projects, skills, or background."},
  {kw:['project','projects','built','made','work'], a:"Manthan builds real, deployed AI + full-stack products. Highlights: AthletixAI (AI sports-talent assessment) and Kolam Studio (heritage-tech, SIH 2025). Open 'My Projects' to explore them."},
  {kw:['athletix','sport','athlete'], a:"AthletixAI turns any phone camera into a sports lab \u2014 on-device AI reads 33 body keypoints and scores 5 metrics across 35 sports. Live in production; built with Flask + MediaPipe + vanilla JS."},
