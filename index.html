@@ -431,6 +431,8 @@ body{background-image:radial-gradient(ellipse at 30% 0%,rgba(242,190,89,.045),tr
 .featured-row small{display:block;font-size:10px;color:var(--txt2);margin-top:3px;line-height:1.4}
 .featured-row>span:last-child{color:var(--teal);margin-left:auto}
 .engine-bottom{display:grid;grid-template-columns:1.85fr 1fr;gap:12px;margin-top:12px}
+.home-leetcode{margin-top:18px;min-width:0}
+.home-leetcode .lc-card{background:var(--card)}
 .hub-act{padding:15px 18px;margin:0}
 .gh-graph{margin:0;padding:0;border:0;background:transparent}
 .hub-act .gh-graph{margin:0}
@@ -510,6 +512,10 @@ body.light .engine-panel,body.light .sq{background:var(--card)}
       <section class="hub-act engine-panel" aria-label="GitHub activity"><div class="panel-heading"><h2>GitHub Activity</h2><span>Contributions in the last year</span></div><div class="gh-graph"><div id="ghGraph" class="cgload">Loading contribution graph&hellip;</div></div></section>
       <div class="stats engine-panel" id="hubStats" aria-label="Portfolio statistics"></div>
     </div>
+    <section class="home-leetcode" aria-labelledby="homeLeetTitle">
+      <div class="panel-heading"><h2 id="homeLeetTitle">LeetCode activity</h2></div>
+      <div id="leetBox" class="leet" aria-live="polite"></div>
+    </section>
     <footer class="engine-footer"><span></span>Thoughtfully engineered. Continuously evolving.<span></span></footer>
   </section>
 
@@ -732,8 +738,7 @@ const PORTFOLIO = {
       {k:'Duration', v:'2025 – 2029'},
       {k:'CGPA', v:'8.28 / 10'}
     ],
-    certs:['Python Programming','Android App Development','AI Tools & ChatGPT','Google Analytics','Digital Marketing','Project Management'],
-    note:'12th & 10th (school, board, marks) bhej de — wo bhi add kar dunga.'
+    certs:['Python Programming','Android App Development','AI Tools & ChatGPT','Google Analytics','Digital Marketing','Project Management']
   },
   achievements:[
     {t:'Internal Smart India Hackathon 2026 — Top 50 Teams · Team Leader', d:'Led The Solvers, selected among the Top 50 Teams at Sharda University’s internal SIH, organised by the Sharda School of Computing Science & Engineering on 10–11 September 2026.', certificate:'assets/cert-sih-team-solvers.pdf'},
@@ -881,14 +886,13 @@ function buildProfile(){
     +'<div class="p-about reveal">'+p.about+'</div>'
     +term
     +'<div class="reveal"><div class="eyebrow" style="margin-top:6px">// stack</div><div class="p-h2">The toolkit I build with</div><div class="skill-grid">'+skills+'</div></div>'
-    +'<div class="reveal"><div class="sec-label" style="margin-top:22px">connect</div><div class="contacts">'+contacts+'</div></div>'
-    +'<div class="reveal"><div class="eyebrow" style="margin-top:22px">// leetcode</div><div class="p-h2">LeetCode activity</div><div id="leetBox" class="leet"></div></div>';
+    +'<div class="reveal"><div class="sec-label" style="margin-top:22px">connect</div><div class="contacts">'+contacts+'</div></div>';
 }
 function buildAcademics(){
   var a=PORTFOLIO.academics;
   var rows=a.rows.map(function(r){return '<div class="irow"><span class="ik">'+r.k+'</span><span class="iv">'+r.v+'</span></div>';}).join('');
   var certs = (a.certs && a.certs.length) ? '<div class="sec-label reveal" style="margin-top:22px">certifications</div><div class="chips reveal">'+a.certs.map(function(c){return '<span class="chip">'+c+'</span>';}).join('')+'</div>' : '';
-  return '<div class="info reveal">'+rows+'</div>'+certs+'<div class="note-ph reveal">'+a.note+'</div>';
+  return '<div class="info reveal">'+rows+'</div>'+certs;
 }
 function buildAchievements(){
   const cards=PORTFOLIO.achievements.map(function(x){return '<div class="ach reveal"><div class="ach-ic">'+ICM.achievements+'</div><div><div class="ach-t">'+x.t+'</div><div class="ach-d">'+x.d+'</div>'+(x.certificate?'<a class="achievement-proof" href="'+x.certificate+'" target="_blank" rel="noopener">View certificate &#8599;</a>':'')+'</div></div>';}).join('');
@@ -988,7 +992,6 @@ function openSlider(key){
     scrollToSlide(key,false);
     SLIDE_ORDER.forEach(function(k){ observeReveals(document.getElementById('sl-'+k)); });
     loadGitHubRepos();
-    loadLeetCode();
   }); });
 }
 (function(){ var c=document.getElementById('slides'); if(c){ c.addEventListener('scroll',function(){ var i=Math.round(c.scrollLeft/c.clientWidth); setActiveTab(SLIDE_ORDER[Math.max(0,Math.min(SLIDE_ORDER.length-1,i))]); }); } })();
@@ -1193,6 +1196,7 @@ renderHub();
 })();
 renderStats();
 loadGitHubGraph();
+loadLeetCode();
 (function(){var a=document.getElementById('heroAbout'); if(a) a.textContent=PORTFOLIO.profile.about;})();
 setTimeout(()=>{ if(document.getElementById('splash').classList.contains('active')) enter(); }, 2600);
 </script>
